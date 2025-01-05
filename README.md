@@ -1,5 +1,3 @@
-﻿# Nexus-Hacksprint
-
 # FarmLink AI
 
 FarmLink AI is an AI-powered farming assistant designed to provide smart solutions to farmers. The platform offers crop recommendations, disease prediction, and fertilizer suggestions based on various environmental and soil parameters. It leverages machine learning models and AI-powered chatbots to assist users in making informed decisions about farming practices.
@@ -16,7 +14,6 @@ FarmLink AI is an AI-powered farming assistant designed to provide smart solutio
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
@@ -105,19 +102,6 @@ Contributions are welcome! If you want to contribute, please follow these steps:
 2. Create a new branch for your changes
 3. Make the necessary changes
 4. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-- **Flask** for providing a simple yet powerful web framework.
-- **scikit-learn** and **TensorFlow** for machine learning.
-- **SpeechRecognition** for voice-based input handling.
-- **OpenCV** for image processing tasks.
-- **Pillow** for image manipulation.
-- **pyttsx3** for text-to-speech functionality.
 
 ---
 
