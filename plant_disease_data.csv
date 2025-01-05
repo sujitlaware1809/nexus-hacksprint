@@ -1,0 +1,11 @@
+Leaf_Area (cm²),Color_Intensity (0-1),Leaf_Width (cm),Disease
+12.5,0.8,4.1,Leaf Blight
+15.3,0.6,4.3,Healthy
+10.2,0.4,3.8,Leaf Blight
+8.7,0.2,3.5,Powdery Mildew
+14.8,0.7,4.0,Healthy
+11.1,0.5,3.9,Healthy
+9.5,0.3,3.6,Leaf Blight
+16.0,0.9,4.5,Healthy
+13.7,0.6,4.2,Powdery Mildew
+11.8,0.4,3.7,Leaf Blight
