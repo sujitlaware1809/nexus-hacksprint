@@ -104,5 +104,37 @@ Contributions are welcome! If you want to contribute, please follow these steps:
 4. Submit a pull request
 
 ---
+farmlink-ai/
+│
+├── app.py                      # Main Flask application
+├── requirements.txt            # List of dependencies
+├── README.md                   # Project overview and setup instructions
+├── .gitignore                  # Git ignore file for unnecessary files/folders
+│
+├── static/                     # Static files (images, CSS, JS)
+│   ├── images/                 # Folder for image assets
+│   ├── css/                    # Stylesheets
+│   └── js/                     # JavaScript files
+│
+├── templates/                  # HTML files
+│   ├── base.html               # Base layout file with header/footer
+│   ├── index.html              # Home page template
+│   ├── crop-recommendation.html # Crop recommendation page template
+│   ├── chatbot.html            # Chatbot page template
+│   └── plant-disease.html      # Plant disease prediction page template
+│
+├── models/                     # Machine learning models and related files
+│   ├── disease_model.pkl       # Pre-trained plant disease model
+│   ├── crop_model.pkl          # Pre-trained crop recommendation model
+│   └── fertilizer_model.pkl    # Pre-trained fertilizer recommendation model
+│
+├── utils/                      # Utility files and helper functions
+│   ├── disease_predictor.py    # Functions for disease prediction
+│   ├── crop_recommender.py     # Functions for crop recommendation
+│   ├── chatbot.py              # Functions for chatbot integration
+│   └── voice_recognition.py    # Functions for voice input processing
+│
+└── venv/                       # Virtual environment (if applicable)
+
 
 Feel free to reach out to us if you have any questions or suggestions!
