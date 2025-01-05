@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <!-- Header Section -->
+    <div class="form-header">
+        <h2>Plant Disease Prediction</h2>
+        <p>Upload an image of your plant to diagnose potential diseases.</p>
+    </div>
+
+    <!-- Form Section -->
+    <form method="POST" enctype="multipart/form-data" class="form-body">
+        <label for="plant_image" class="form-label">Upload Plant Image:</label>
+        <input type="file" name="plant_image" id="plant_image" accept="image/*" required class="form-input">
+
+        <button type="submit" class="form-button">Predict Disease</button>
+    </form>
+
+    <!-- Result Section -->
+    {% if disease_prediction %}
+    <div class="result-container success">
+        <h3>Predicted Disease</h3>
+        <p>{{ disease_prediction }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Error Section -->
+    {% if error %}
+    <div class="result-container error">
+        <p>Error: {{ error }}</p>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    /* General Form Container Styling */
+    .form-container {
+        max-width: 700px;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    /* Header Styling */
+    .form-header {
+        background-color: #00796b;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    .form-header h2 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .form-header p {
+        margin: 5px 0 0;
+        font-size: 16px;
+    }
+
+    /* Form Body Styling */
+    .form-body {
+        padding: 20px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #333;
+        font-size: 16px;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus {
+        border-color: #00796b;
+        outline: none;
+    }
+
+    .form-button {
+        width: 100%;
+        padding: 12px;
+        background-color: #00796b;
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .form-button:hover {
+        background-color: #005a4f;
+        transform: translateY(-2px);
+    }
+
+    /* Result Box Styling */
+    .result-container {
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        margin: 20px;
+    }
+
+    .result-container.success {
+        background-color: #e0f2f1;
+        border: 2px solid #00796b;
+        color: #00796b;
+    }
+
+    .result-container.error {
+        background-color: #ffebee;
+        border: 2px solid #c62828;
+        color: #c62828;
+    }
+
+    .result-container h3 {
+        margin: 0 0 10px;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .form-header h2 {
+            font-size: 24px;
+        }
+
+        .form-body {
+            padding: 15px;
+        }
+
+        .form-button {
+            font-size: 16px;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="recommendation-container">
+    <div class="form-header">
+        <h2>🌾 Crop & Fertilizer Recommendation</h2>
+        <p>Provide the required parameters to get tailored crop and fertilizer recommendations.</p>
+    </div>
+
+    <form method="POST" class="recommendation-form">
+        <div class="form-group">
+            <label for="N">Nitrogen (N):</label>
+            <input type="number" name="N" id="N" step="any" placeholder="Enter value (0-500)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="P">Phosphorus (P):</label>
+            <input type="number" name="P" id="P" step="any" placeholder="Enter value (0-500)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="K">Potassium (K):</label>
+            <input type="number" name="K" id="K" step="any" placeholder="Enter value (0-500)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" name="temperature" id="temperature" step="any" placeholder="Enter value (15-45)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" name="humidity" id="humidity" step="any" placeholder="Enter value (30-90)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ph">pH:</label>
+            <input type="number" name="ph" id="ph" step="any" placeholder="Enter value (4-9)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="rainfall">Rainfall (mm):</label>
+            <input type="number" name="rainfall" id="rainfall" step="any" placeholder="Enter value (0-500)" required>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn-submit">🌟 Get Recommendation</button>
+        </div>
+    </form>
+
+    {% if crop_prediction %}
+    <div class="result">
+        <h3>🌱 Recommended Crop:</h3>
+        <p>{{ crop_prediction }}</p>
+
+        <h3>💧 Recommended Fertilizer:</h3>
+        <p>{{ fertilizer_prediction }}</p>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="error-container">
+        <p>Error: {{ error }}</p>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f4f9f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .recommendation-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 20px;
+    }
+
+    .form-header {
+        text-align: center;
+        background: #00796b;
+        color: #ffffff;
+        padding: 15px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .form-header h2 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .form-header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+    }
+
+    .recommendation-form {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .button-group {
+        text-align: center;
+    }
+
+    .btn-submit {
+        background: #00796b;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .btn-submit:hover {
+        background: #004d40;
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 15px;
+        background: #e0f2f1;
+        border-left: 4px solid #00796b;
+        border-radius: 5px;
+    }
+
+    .result h3 {
+        margin: 0;
+        font-size: 18px;
+        color: #00796b;
+    }
+
+    .result p {
+        margin: 5px 0;
+        font-size: 16px;
+    }
+
+    .error-container {
+        margin-top: 20px;
+        padding: 15px;
+        background: #ffebee;
+        border-left: 4px solid #d32f2f;
+        border-radius: 5px;
+    }
+
+    .error-container p {
+        margin: 0;
+        color: #d32f2f;
+        font-size: 14px;
+    }
+</style>
+{% endblock %}

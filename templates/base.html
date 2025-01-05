@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmLink AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="/">FarmLink.ai</a>
+        </div>
+        <div class="nav">
+            <a href="/">Home</a>
+            <a href="/crop-recommendation">Crop Recommendation</a>
+            <a href="/chatbot">Chatbot</a>
+            <a href="/plant-disease">Plant Disease</a>
+        </div>
+    </div>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 FarmLink AI. All Rights Reserved.</p>
+    </div>
+</body>
+
+</html>

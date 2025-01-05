@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="chatbot-container">
+    <div class="chatbot-header">
+        <h2>🌱 Smart Farming Assistant</h2>
+        <p>Ask your questions about plant diseases, fertilizers, soil quality, and more!</p>
+    </div>
+
+    <div class="chatbot-body">
+        <form method="POST" class="chatbot-form">
+            <div class="input-group">
+                <label for="user_query">Enter Your Query:</label>
+                <input type="text" id="user_query" name="user_query" placeholder="Type or use voice input..." required>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn-submit">💬 Ask</button>
+                <button type="button" id="start-recording" class="btn-voice" onclick="startVoiceInput()">🎙️ Start Voice</button>
+                <button type="button" id="stop-recording" class="btn-voice" onclick="stopVoiceInput()" disabled>⏹️ Stop Voice</button>
+            </div>
+        </form>
+
+        {% if disease_prediction %}
+        <div class="response-container">
+            <h3>Bot's Response:</h3>
+            <p><strong>English:</strong> {{ disease_prediction["en"] }}</p>
+            <p><strong>Hindi:</strong> {{ disease_prediction["hi"] }}</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error-container">
+            <p>Error: {{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="chatbot-footer">
+        <p>🌟 You can ask about plant diseases, fertilizers, soil quality, and suitable crops in both Hindi and English.</p>
+    </div>
+</div>
+
+<script>
+    let recognition;
+    let isRecording = false;
+
+    function startVoiceInput() {
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            recognition = new (window.webkitSpeechRecognition || window.SpeechRecognition)();
+            recognition.lang = "en-US"; // Change to "hi-IN" for Hindi
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.start();
+
+            recognition.onstart = function () {
+                isRecording = true;
+                document.getElementById("start-recording").disabled = true;
+                document.getElementById("stop-recording").disabled = false;
+                console.log("Voice input started.");
+            };
+
+            recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById("user_query").value = transcript;
+                console.log("Recognized text:", transcript);
+            };
+
+            recognition.onerror = function (event) {
+                console.error("Speech recognition error:", event.error);
+                alert("Error during voice recognition: " + event.error);
+            };
+
+            recognition.onend = function () {
+                isRecording = false;
+                document.getElementById("start-recording").disabled = false;
+                document.getElementById("stop-recording").disabled = true;
+                console.log("Voice input stopped.");
+            };
+        } else {
+            alert("Sorry, your browser does not support speech recognition.");
+        }
+    }
+
+    function stopVoiceInput() {
+        if (isRecording && recognition) {
+            recognition.stop();
+        }
+    }
+</script>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f4f9f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .chatbot-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #ffffff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .chatbot-header {
+        background: #00796b;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .chatbot-header h2 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .chatbot-header p {
+        margin: 5px 0 0;
+        font-size: 14px;
+    }
+
+    .chatbot-body {
+        padding: 20px;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    .input-group label {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .button-group {
+        text-align: center;
+    }
+
+    .btn-submit, .btn-voice {
+        background: #00796b;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        margin: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .btn-voice {
+        background: #009688;
+    }
+
+    .btn-submit:hover, .btn-voice:hover {
+        background: #004d40;
+    }
+
+    .response-container, .error-container {
+        margin-top: 20px;
+        padding: 15px;
+        background: #e0f2f1;
+        border-left: 4px solid #00796b;
+        border-radius: 5px;
+    }
+
+    .error-container {
+        background: #ffebee;
+        border-color: #d32f2f;
+    }
+
+    .chatbot-footer {
+        background: #e0f2f1;
+        text-align: center;
+        padding: 15px;
+        font-size: 14px;
+    }
+</style>
+{% endblock %}
